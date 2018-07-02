@@ -4,43 +4,59 @@
 #include <cmath>
 #include <cstring>
 
+const size_t OUT_BUFFER_SIZE = 1024*1024;
+const size_t INPUT_BUFFER_SIZE = 256*1024;
+
 int main()
 {    
-    char* out = static_cast<char*>(malloc(1024*1024));
-    char buf[32];
-    size_t out_size = 1024*1024;
+    char* out_buffer           =  static_cast<char*>( malloc(OUT_BUFFER_SIZE) );
+    size_t out_buffer_index    =  OUT_BUFFER_SIZE;
     
-    char inpt[256*1024];
-    size_t indx = 0;
-    indx = fread(inpt, 1, 256*1024, stdin);
+    char* in_buffer            = static_cast<char*>( malloc(INPUT_BUFFER_SIZE) );
+    size_t in_buffer_index     = 0;
+    in_buffer_index            = fread(in_buffer, 1, INPUT_BUFFER_SIZE, stdin);
     
+
     uint64_t in = 0;
     bool is_number = false;
-    for(size_t i = 0; i <= indx; i++) 
+    for(size_t i = 0; i <= in_buffer_index; i++) 
     {  
-        switch(inpt[i]) {
+        switch(in_buffer[i]) {
             case '0' ... '9':
-                in = (in * 10) + static_cast<uint64_t>(inpt[i] - '0');    
+                in = (in * 10) + static_cast<uint64_t>(in_buffer[i] - '0');    
                 is_number = true;
             break;
                 
             default:
                 if (is_number){
-                    size_t n = sprintf( buf, "%.4f\n", sqrt( in ));
-                    buf[n] = '\n';
-                    out_size -= n;
-                    memcpy(out + out_size, buf, n);
+                    double sd = sqrt ( in ); 
+
+                    uint32_t sd_integer     = static_cast<uint32_t>(sd);
+                    uint32_t sd_fractional  = static_cast<uint32_t>((sd - sd_integer)*10000);
+           
+                    out_buffer[--out_buffer_index] = '0' + (sd_fractional % 10);
+                    out_buffer[--out_buffer_index] = '0' + (sd_fractional % 100)/10;
+                    out_buffer[--out_buffer_index] = '0' + (sd_fractional % 1000)/100;
+                    out_buffer[--out_buffer_index] = '0' + (sd_fractional % 10000)/1000;
+                    out_buffer[--out_buffer_index] = '.';
+                    
+                    do {
+                        out_buffer[--out_buffer_index] = '0' + sd_integer % 10;
+                        sd_integer /= 10;       
+                    } while ( sd_integer > 0 );
+
+                    out_buffer[--out_buffer_index] = '\n';
+
                     is_number = false;
                     in = 0;
-                    
                 }
             break;
         }
     }
                
-    out[ 1024*1024 ] = '\0';
+    out_buffer[ OUT_BUFFER_SIZE ] = '\0';
     
-    std::cout << out + out_size;
+    std::cout << out_buffer + out_buffer_index;
     
     return 0;
 }
