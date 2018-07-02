@@ -1,20 +1,17 @@
 #include <iostream>
-#include <sstream>
-#include <iomanip>
 #include <cmath>
-#include <cstring>
 
-const size_t OUT_BUFFER_SIZE = 1024*1024;
-const size_t INPUT_BUFFER_SIZE = 256*1024;
+const size_t OUT_BUFFER_SIZE    = 1024*1024;
+const size_t INPUT_BUFFER_SIZE  = 256*1024;
 
 int main()
 {    
-    char* out_buffer           =  static_cast<char*>( malloc(OUT_BUFFER_SIZE) );
-    size_t out_buffer_index    =  OUT_BUFFER_SIZE;
+    char    out_buffer[OUT_BUFFER_SIZE];
+    size_t  out_buffer_index    =  OUT_BUFFER_SIZE;
     
-    char* in_buffer            = static_cast<char*>( malloc(INPUT_BUFFER_SIZE) );
-    size_t in_buffer_index     = 0;
-    in_buffer_index            = fread(in_buffer, 1, INPUT_BUFFER_SIZE, stdin);
+    char    in_buffer[INPUT_BUFFER_SIZE];
+    size_t  in_buffer_index     = 0;
+    in_buffer_index             = fread(in_buffer, 1, INPUT_BUFFER_SIZE, stdin);
     
 
     uint64_t in = 0;
@@ -56,7 +53,7 @@ int main()
                
     out_buffer[ OUT_BUFFER_SIZE ] = '\0';
     
-    std::cout << out_buffer + out_buffer_index;
+    puts(out_buffer + out_buffer_index);
     
     return 0;
 }
