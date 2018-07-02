@@ -1,28 +1,28 @@
-// Example program
 #include <iostream>
+#include <sstream>
 #include <iomanip>
-
-#include <vector>
 #include <math.h>
-#include <algorithm>
+#include <string.h>
+
 
 int main()
 {    
-    std::vector<double> in;
-    uint64_t n;
+    char* out = static_cast<char*>(malloc(1024*1024));
+    char buf[32];
+    size_t out_size = 1024*1024;
     
-    in.reserve(64*1000);
-    
-    for(int i = 0; i < 128*1000 && std::cin >> n; i++)
+    uint64_t in;
+    for(int i = 0; i < 256*1000 && std::cin >> in; i++)
     {
-        in.push_back(static_cast<double>(n));
+        size_t n = sprintf( buf, "%.4f\n", sqrt( static_cast<double>( in )));
+        buf[n] = '\n';
+        out_size -= n;
+        memcpy(out + out_size, buf, n);
     }
     
-    std::cout.precision(4);
-    std::cout << std::fixed;
+    out[ 1024*1024 ] = '\0';
     
-    std::for_each(in.rbegin(), in.rend(), [](double& d){ printf("%.4f\n", sqrt(d)); });
-
+    std::cout << out + out_size;
+    
     return 0;
 }
-
