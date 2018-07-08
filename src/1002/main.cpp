@@ -73,6 +73,7 @@ constexpr
 typename std::enable_if< N == sizeof...(Vals), std::array<uint8_t, N>>::type
 make() {
   return std::array<uint8_t, N>{{Vals...}};
+  std::move();
 }
 
 template <uint8_t N, uint8_t ...Vals>
