@@ -1,4 +1,9 @@
 //0.514s	2'724 KB
+//150k.cin
+//real	0m2.746s
+//user	0m1.423s
+//sys	0m1.309s
+
 
 #include <iostream>
 #include <string>
@@ -8,6 +13,10 @@
 
 int main()
 {
+    #ifndef ONLINE_JUDGE
+        freopen("t150k.cin", "rt", stdin);
+    #endif
+
     uint32_t N;
     std::cin >> N ;
 
