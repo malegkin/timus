@@ -7,3 +7,4 @@ Donald is a postman     - http://acm.timus.ru/problem.aspx?space=1&num=2023
 1, 10, 100, 1000...     - http://acm.timus.ru/problem.aspx?space=1&num=1209
 Flags                   - http://acm.timus.ru/problem.aspx?space=1&num=1225
 Final Standings         - http://acm.timus.ru/problem.aspx?space=1&num=1100 
+Divorce of the Seven Dwarfs - http://acm.timus.ru/problem.aspx?space=1&num=1243
