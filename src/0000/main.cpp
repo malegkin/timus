@@ -1,15 +1,12 @@
 #include <iostream>
 #include <string>
 #include <cassert>
+#include <algorithm>
+#include <sstream>
 
-std::string process(const std::string& in){
+std::string process(std::istream &in) {
     std::string out;
 
-    return out;
-}
-
-std::string process(const uint32_t N){
-    std::string out;
 
     return out;
 }
@@ -19,15 +16,17 @@ int main()
     #ifndef ONLINE_JUDGE
         freopen("test.cin", "rt", stdin);
 
-        std::string test_in = "";
-        std::string test_out = "";
-        assert(process(test_in) == test_out);
+        std::stringstream ss(
+"\n\
+\n");
+        assert(process(ss) == "");
+
+
+        assert(process(std::cin) == "");
+        return 0;
     #endif
 
-    uint32_t N;
-    std::cin >> N;
-
-    std::cout << process(N) << std::endl;
+    std::cout << process(std::cin) << std::endl;
 
     return 0;
 }
