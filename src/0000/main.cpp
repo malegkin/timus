@@ -4,6 +4,18 @@
 #include <algorithm>
 #include <sstream>
 
+int linetoi(std::istream& in ){
+    std::string line;
+    getline(in, line);
+    return std::stoi(line);
+}
+
+std::string linetos(std::istream& in ){
+    std::string line;
+    getline(in, line);
+    return line;
+}
+
 std::string process(std::istream &in) {
     std::string out;
 
