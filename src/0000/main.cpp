@@ -23,19 +23,17 @@ std::string process(std::istream &in) {
     return out;
 }
 
+std::string process(std::string in){
+    std::stringstream ss(in);
+    return process(ss);
+}
+
 int main()
 {
     #ifndef ONLINE_JUDGE
+        assert(process("") == "");
+        
         freopen("test.cin", "rt", stdin);
-
-        std::stringstream ss(
-"\n\
-\n");
-        assert(process(ss) == "");
-
-
-        assert(process(std::cin) == "");
-        return 0;
     #endif
 
     std::cout << process(std::cin) << std::endl;
