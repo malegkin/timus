@@ -3,16 +3,9 @@
 #include <string.h>
 #include <assert.h>
 
-int main(){
+char* solve(const int N, char* str){
 
-    #ifndef ONLINE_JUDGE
-        
-        freopen("test.cin", "rt", stdin);
-    #endif
-    
-
-    int n;
-    scanf("%i", &n);
+    memset (str, 0, sizeof(str));
     for(int i=1; i<n; i++) 
         printf("(");
 
@@ -32,6 +25,23 @@ int main(){
         if( i != n)
             printf(")");
     }
+
+    return str;
+}
+
+
+int main(){
+
+    #ifndef ONLINE_JUDGE
+        char out[200*1000];
+        assert( strcmp(solve(3, out), "((sin(1)+3)sin(1–sin(2))+2)sin(1–sin(2+sin(3)))+1") );
+        assert( solve(200, out)  );        
+        freopen("test.cin", "rt", stdin);
+    #endif
+    
+
+    int n;
+    scanf("%i", &n);
 
 
     return 0;
