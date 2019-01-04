@@ -1,19 +1,17 @@
 #include <iostream>
-#include <string>
-#include <cassert>
-#include <algorithm>
 #include <sstream>
+#include <fstream>
+#include <cassert>
+#include <string>
+#include <algorithm>
 
-int linetoi(std::istream& in ){
-    std::string line;
-    getline(in, line);
-    return std::stoi(line);
-}
 
-std::string linetos(std::istream& in ){
-    std::string line;
-    getline(in, line);
-    return line;
+std::string read_file(std::string file_name){
+    std::fstream fs(file_name);
+    std::stringstream ss;
+    ss << fs.rdbuf();
+    fs.close();
+    return ss.str();
 }
 
 std::string process(std::istream &in) {
@@ -31,8 +29,13 @@ std::string process(std::string in){
 int main()
 {
     #ifndef ONLINE_JUDGE
-        assert(process("") == "");
-        
+        const std::string test_cout = read_file("test.cout");
+        std::cout << "test_cout: [" << test_cout << "]" << std::endl;
+        const std::string process_cout = process(read_file("test.cin"));
+        std::cout << "process_cout: [" << process_cout << "]" << std::endl;
+    
+        assert(process_cout == test_cout);       
+ 
         freopen("test.cin", "rt", stdin);
     #endif
 
