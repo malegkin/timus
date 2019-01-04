@@ -1,0 +1,21 @@
+1119. Metro
+Time limit: 0.5 second
+Memory limit: 64 MB
+Many of SKB Kontur programmers like to get to work by Metro because the main office is situated quite close the station Uralmash. So, since a sedentary life requires active exercises off-duty, many of the staff — Nikifor among them — walk from their homes to Metro stations on foot.
+Problem illustration
+Nikifor lives in a part of our city where streets form a grid of residential quarters. All the quarters are squares with side 100 meters. A Metro entrance is situated at one of the crossroads. Nikifor starts his way from another crossroad which is south and west of the Metro entrance. Naturally, Nikifor, starting from his home, walks along the streets leading either to the north or to the east. On his way he may cross some quarters diagonally from their south-western corners to the north-eastern ones. Thus, some of the routes are shorter than others. Nikifor wonders, how long is the shortest route.
+You are to write a program that will calculate the length of the shortest route from the south-western corner of the grid to the north-eastern one.
+Input
+There are two integers in the first line: N and M (0 < N,M ≤ 1000) — west-east and south-north sizes of the grid. Nikifor starts his way from a crossroad which is situated south-west of the quarter with coordinates (1, 1). A Metro station is situated north-east of the quarter with coordinates (N, M). The second input line contains a number K (0 ≤ K ≤ 100) which is a number of quarters that can be crossed diagonally. Then K lines with pairs of numbers separated with a space follow — these are the coordinates of those quarters.
+Output
+Your program is to output a length of the shortest route from Nikifor's home to the Metro station in meters, rounded to the integer amount of meters.
+Sample
+input	output
+3 2
+3
+1 1
+3 2
+1 2
+383
+Problem Author: Leonid Volkov
+Problem Source: USU Open Collegiate Pr
