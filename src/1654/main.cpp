@@ -11,7 +11,9 @@ std::string read_file(std::string file_name){
     std::stringstream ss;
     ss << fs.rdbuf();
     fs.close();
-    return ss.str();
+    auto out =  ss.str();
+    out.pop_back();
+    return std::move(out);
 }
 
 
@@ -21,7 +23,7 @@ std::string process(std::istream &in) {
 
     in >> cm;
 
-    if (std::size(cm) < 2)
+    if (cm.size() < 2)
         return cm;
 
     size_t out_size = cm.size();
@@ -29,24 +31,26 @@ std::string process(std::istream &in) {
 
     auto it = std::begin(cm);
     auto it_prev = it;
-    auto it_next = it + 1;
-    for (; it != std::end(cm); it++){
-        if ( *it == '#' )
+    for (; (it+1) != std::end(cm); it++){
+        if (*it == '#')
             continue;
 
+        auto it_next = it+1;
+
         if (*it != *it_next){
-            it_prev = it;
+            it_prev = it ;
             continue;
         }
 
         *it = '#';
-        *it_next = '#';
+        *(it_next++) = '#';
         out_size -= 2;
 
-        if (it_next != std::end(cm))
-            it_next++;
 
-        while ( it_next != std::end(cm) && it_prev != std::begin(cm) ){
+        while ( it_next != std::end(cm) && it_prev != std::end(cm) ){
+            while(it_prev != std::end(cm) && *it_prev == '#')
+                it_prev --;
+
             if ( *it_next != *it_prev ) {
                 it = it_next - 1;
                 break;
@@ -61,7 +65,7 @@ std::string process(std::istream &in) {
 
 
     std::string out;
-    out.reserve(out_size);
+
     std::copy_if(std::begin(cm), std::end(cm), std::back_inserter(out), [](auto a){
         return (a != '#');
     });
@@ -89,7 +93,7 @@ int main()
         const std::string process_cout = process(read_file("test.cin"));
         std::cout << "process_cout: [" << process_cout << "]" << std::endl;
 
-        //assert(process_cout == test_cout);
+        assert(process_cout == test_cout);
 
 
         freopen("test.cin", "rt", stdin);

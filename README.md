@@ -8,7 +8,7 @@ Donald is a postman     - http://acm.timus.ru/problem.aspx?space=1&num=2023
 Flags                   - http://acm.timus.ru/problem.aspx?space=1&num=1225
 Final Standings         - http://acm.timus.ru/problem.aspx?space=1&num=1100 
 Divorce of the Seven Dwarfs - http://acm.timus.ru/problem.aspx?space=1&num=1243
-
+Cipher Message          - http://acm.timus.ru/problem.aspx?space=1&num=1654
 
 
 #timus / mod
