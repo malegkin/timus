@@ -1,20 +1,14 @@
-
 #include <stdio.h>
-#include <string.h>
-#include <assert.h>
 
-char solve(const char* pIn){
+int main() 
+{
+    int n;
+    scanf("%d", &n);
     
-    return pIn[0];
-}
+    unsigned long long out = 0;
+    do {
+        out += (1+n)*n + (1+n)*n/2;
+    } while(n--);
 
-int main(){
-
-    #ifndef ONLINE_JUDGE
-        assert(solve("a") == 'a');
-        
-        freopen("test.cin", "rt", stdin);
-    #endif
-    
-    return 0;
+    printf("%llu\n", out);
 }
