@@ -13,7 +13,7 @@ int main(){
     #ifndef ONLINE_JUDGE
         assert(solve("a") == 'a');
         
-        freopen("test.cin", "rt", stdin);
+        freopen("./tests/1.in", "rt", stdin);
     #endif
     
     return 0;
