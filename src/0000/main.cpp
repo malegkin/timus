@@ -14,32 +14,34 @@ std::string read_file(std::string file_name){
     return ss.str();
 }
 
-std::string process(std::istream &in) {
+std::string solve(std::istream &in) {
     std::string out;
 
 
     return out;
 }
 
-std::string process(std::string in){
+std::string solve(std::string in){
     std::stringstream ss(in);
-    return process(ss);
+    return solve(ss);
 }
 
 int main()
 {
     #ifndef ONLINE_JUDGE
-        const std::string test_cout = read_file("test.cout");
-        std::cout << "test_cout: [" << test_cout << "]" << std::endl;
-        const std::string process_cout = process(read_file("test.cin"));
-        std::cout << "process_cout: [" << process_cout << "]" << std::endl;
+        auto test_cout = read_file("test.cout");
+        test_cout.pop_back();
+        std::cout << "\ttest_cout: [" << test_cout << "]" << std::endl;
+
+        auto solve_cout = solve( read_file("test.cin") );
+        std::cout << "\tsolve_cout: [" << solve_cout << "]" << std::endl;
     
-        assert(process_cout == test_cout);       
+        assert(solve_cout == test_cout);       
  
         freopen("test.cin", "rt", stdin);
     #endif
 
-    std::cout << process(std::cin) << std::endl;
+    std::cout << solve( std::cin ) << std::endl;
 
     return 0;
 }
