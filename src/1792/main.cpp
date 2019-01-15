@@ -16,9 +16,9 @@ std::string solve(std::istream &in) {
     bool r2 = ina[0] xor ina[2] xor ina[3];
     bool r3 = ina[0] xor ina[1] xor ina[3];
 
-    if ( r1 != ina[4] && r2 != ina[5] && r3 == ina[6])  ina[0] = !ina[0];  
+    if ( r1 == ina[4] && r2 != ina[5] && r3 != ina[6])  ina[0] = !ina[0];  
     if ( r1 != ina[4] && r2 == ina[5] && r3 != ina[6])  ina[1] = !ina[1];  
-    if ( r1 == ina[4] && r2 != ina[5] && r3 != ina[6])  ina[2] = !ina[2];  
+    if ( r1 != ina[4] && r2 != ina[5] && r3 == ina[6])  ina[2] = !ina[2];  
     if ( r1 != ina[4] && r2 != ina[5] && r3 != ina[6])  ina[3] = !ina[3];  
 
     if ( r1 != ina[4] && r2 == ina[5] && r3 == ina[6])  ina[4] = !ina[4];  
@@ -29,7 +29,6 @@ std::string solve(std::istream &in) {
     std::stringstream out;
     std::copy(std::begin(ina), std::end(ina), std::ostream_iterator<bool>(out, " "));
     return out.str();
-
 }
 
 std::string solve(std::string in){
@@ -39,10 +38,14 @@ std::string solve(std::string in){
 
 int main()
 {
-    assert(solve("1 1 1 0 0 0 1") == "1 1 1 0 0 0 0 ");
-    #ifndef ONLINE_JUDGE
-        freopen("./tests/2.in", "rt", stdin);
-    #endif
+    assert( solve("1 1 1 0 0 0 1") == "1 1 1 0 0 0 0 " );
+    assert( solve("1 0 1 0 0 0 0") == "1 1 1 0 0 0 0 " );
+    assert( solve("1 1 0 0 0 0 0") == "1 1 1 0 0 0 0 " );
+    assert( solve("1 1 1 1 0 0 0") == "1 1 1 0 0 0 0 " );
+    assert( solve("1 1 1 0 1 0 0") == "1 1 1 0 0 0 0 " );
+    assert( solve("1 1 1 0 0 1 0") == "1 1 1 0 0 0 0 " );
+    assert( solve("0 1 1 0 0 0 0") == "1 1 1 0 0 0 0 " );
+
 
     std::cout << solve( std::cin ) << std::endl;
 
