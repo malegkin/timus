@@ -18,10 +18,7 @@ std::string solve(std::string in){
 
 int main()
 {
-    #ifndef ONLINE_JUDGE
-        freopen("./tests/1.in", "rt", stdin);
-    #endif
-
+    assert(solve("") == "");
     std::cout << solve( std::cin ) << std::endl;
 
     return 0;

@@ -10,11 +10,7 @@ char solve(const char* pIn){
 
 int main(){
 
-    #ifndef ONLINE_JUDGE
-        assert(solve("a") == 'a');
+    assert(solve("a") == 'a');
         
-        freopen("./tests/1.in", "rt", stdin);
-    #endif
-    
     return 0;
 }
