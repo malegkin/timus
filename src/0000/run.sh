@@ -14,11 +14,14 @@ rm -f "$DIR/a.out"
 case "$SRC" in
 "main.cpp")
     echo "COMPILE"
-    g++ -std=c++17 "$DIR/$SRC"
+#-stack_size size
+#                 Specifies the maximum stack size for the main thread in a program.  Without this option a program has a 8MB stack.  The argu-
+#                 ment size is a hexadecimal number with an optional leading 0x. The size should be a multiple of the architecture's page size (4KB or 16KB).
+    g++ -fno-strict-aliasing -DONLINE_JUDGE -lm -x c++ -std=c++14 -Wl,-stack_size,0x600000 -O2 "$DIR/$SRC"
 ;;
 
 "main.c")
-    gcc "$DIR/$SRC"
+    gcc -fno-strict-aliasing -DONLINE_JUDGE -lm -std=c11 -Wl,-stack_size,0x600000 -O2 "$DIR/$SRC" 
 ;;
 esac
 
