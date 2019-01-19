@@ -1,0 +1,11 @@
+1120. Sum of Sequential Numbers
+Time limit: 1.0 second
+Memory limit: 64 MB
+There is no involute formulation concerning factitiously activity of SKB Kontur in this problem. Moreover, there is no formulation at all.
+Input
+There is the only number N, 1 ≤ N ≤ 109.
+Output
+Your program is to output two positive integers A and P separated with a space such that:
+N = A + (A + 1) + … + (A + P − 1).
+You are to choose a pair with the maximal possible value of P.
+
