@@ -29,7 +29,7 @@ esac
 for file in  $DIR/tests/*.in; do
     echo -n "START TEST: [$(basename $file .in)] "
 
-    out=$(cat "$file" | "$DIR/a.out" | sed 's/[[:blank:]]*$//')
+    out=$(cat "$file" | "$DIR/a.out" | LC_ALL=C sed 's/[[:blank:]]*$//')
 
     etalon=$(cat "$DIR/tests/$(basename "$file" .in).out")
 
