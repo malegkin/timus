@@ -4,42 +4,39 @@
 #include <cassert>
 #include <string>
 #include <algorithm>
-
-
-std::string read_file(std::string file_name){
-    std::fstream fs(file_name);
-    std::stringstream ss;
-    ss << fs.rdbuf();
-    fs.close();
-    return ss.str();
-}
-
-std::string process(std::istream &in) {
-    std::string out;
-
-
-    return out;
-}
-
-std::string process(std::string in){
-    std::stringstream ss(in);
-    return process(ss);
-}
+#include <array>
+#include <memory>
+#include <cmath>
 
 int main()
 {
-    #ifndef ONLINE_JUDGE
-        const std::string test_cout = read_file("test.cout");
-        std::cout << "test_cout: [" << test_cout << "]" << std::endl;
-        const std::string process_cout = process(read_file("test.cin"));
-        std::cout << "process_cout: [" << process_cout << "]" << std::endl;
-    
-        assert(process_cout == test_cout);       
- 
-        freopen("test.cin", "rt", stdin);
-    #endif
+    uint16_t we; // west -> east
+    uint16_t sn; // south -> north   
+    uint16_t d; // diagonals
+    std::cin >> we >> sn >> d;
 
-    std::cout << process(std::cin) << std::endl;
+    uint8_t grid[1001][1001] = {};
+    uint8_t diagonally[1001][1001] = {};
+
+    while (d--){
+        uint16_t x,y;
+        std::cin >>x >>y;
+        diagonally[x][y] = 1;
+    }
+
+    for(size_t x = 1; x <= we; x++){
+        for(size_t y = 1; y <= sn; y++){
+            grid[x][y] = std::max( grid[x-1][y], grid[x][y-1] );
+            if ( diagonally[x][y] )
+                grid[x][y] = std::max( grid[x][y], static_cast<uint8_t>(grid[x-1][y-1] + 1));  
+        }
+    } 
+
+    
+    uint32_t out = 100*(we + sn - 2*grid[we][sn]) + round(grid[we][sn]*sqrt(20000.));
+
+    std::cout << out << std::endl;    
+        
 
     return 0;
 }
