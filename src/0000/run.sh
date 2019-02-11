@@ -1,11 +1,13 @@
 #!/usr/bin/env bash 
 set -e
 set -o pipefail
+set -u
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 SRC="main.cpp"
+TESTS_DIR="$DIR/tests"
 
-if [ $# -eq 1 ] ; then
+if [ $# -gt 0 ] ; then
     SRC="$1"
 fi
 
@@ -25,13 +27,22 @@ case "$SRC" in
 ;;
 esac
 
-#test
-for file in  $DIR/tests/*.in; do
-    echo -n "START TEST: [$(basename $file .in)] "
+#tests
 
-    out=$(cat "$file" | "$DIR/a.out" | LC_ALL=C sed 's/[[:blank:]]*$//')
+if [ $# -gt 2 ] ; then
+    TESTS="${@:2}"
+else
+    TESTS=$( find "$TESTS_DIR" -name *.in -exec basename {} .in \; | sort -n )
+fi
 
-    etalon=$(cat "$DIR/tests/$(basename "$file" .in).out")
+for test in $TESTS; do
+    echo -n "START TEST: [$test] "
+    TEST_FN_IN="$TESTS_DIR/$test.in"
+    TEST_FN_OUT="$TESTS_DIR/$test.out"
+    
+    out=$(cat "$TEST_FN_IN" | "$DIR/a.out" | LC_ALL=C sed 's/[[:blank:]]*$//')
+
+    etalon=$(cat "$TEST_FN_OUT")
 
     if [ "$out" != "$etalon" ]; then
         echo "........ [FAIL]"
