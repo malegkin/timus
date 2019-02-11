@@ -1,3 +1,6 @@
+// Classic game theory problem, can be solved with SG
+// https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem
+
 #include <iostream>
 #include <cassert>
 #include <string>
