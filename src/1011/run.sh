@@ -13,8 +13,8 @@ fi
 
 #compile
 rm -f "$DIR/a.out" 
-case "$SRC" in
-"main.cpp")
+case $(echo "$SRC" | sed 's/^.*\.//') in
+"cpp")
     echo "COMPILE"
 #-stack_size size
 #                 Specifies the maximum stack size for the main thread in a program.  Without this option a program has a 8MB stack.  The argu-
@@ -22,14 +22,14 @@ case "$SRC" in
     g++ -fno-strict-aliasing -DONLINE_JUDGE -lm -x c++ -std=c++14 -Wl,-stack_size,0x600000 -O2 "$DIR/$SRC"
 ;;
 
-"main.c")
+"c")
     gcc -fno-strict-aliasing -DONLINE_JUDGE -lm -std=c11 -Wl,-stack_size,0x600000 -O2 "$DIR/$SRC" 
 ;;
 esac
 
 #tests
 
-if [ $# -gt 2 ] ; then
+if [ $# -gt 1 ] ; then
     TESTS="${@:2}"
 else
     TESTS=$( find "$TESTS_DIR" -name *.in -exec basename {} .in \; | sort -n )
