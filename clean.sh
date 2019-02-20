@@ -5,5 +5,8 @@ set -u
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-
-find "$DIR/src" -name a.out -delete 
+#remove files by name
+for fn in a.out .DS_Store;
+do
+    find "$DIR" -name "$fn" -exec rm {} \;
+done 
