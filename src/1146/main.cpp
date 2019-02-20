@@ -79,7 +79,7 @@ auto get_maximal_sub_rectangle(const matrix_t<T>& in) {
         std::fill( std::begin(tmp), std::end(tmp), 0);
         for (size_t i_right = i_left; i_right < in.get_width(); ++i_right){
             for (size_t i = 0; i < in.get_height(); i++)
-                tmp[i] += in[i_right][i];
+                tmp[i] += in[i][i_right];
             
             auto msa = get_maximal_sub_array(tmp);
             gm = std::max(gm, std::get<0>(msa));
