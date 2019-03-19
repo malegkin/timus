@@ -1,0 +1,26 @@
+1322. Spy
+Time limit: 0.25 second
+Memory limit: 64 MB
+The secret service detected an acting foreign agent. Frankly speaking — a spy. A surveillance showed that each week the spy sends strange unreadable texts to somebody via the Internet. In order to find out which information became available to the spy, it is necessary to decipher the texts. Secret service agents got into the spy's apartment, discovered a cipher machine, and found out the principle of its operation.
+An input of the machine is a text line S1 = s1s2...sN. The machine constructs all cyclic permutations of this line, i.e., S2 = s2s3...sNs1, ..., SN = sNs1s2...sN-1. Then the set S1, S2, ..., SN is sorted lexicographically in the ascending order, and the lines are written out in this order in a column, one under another. Thus an array N × N is obtained. One of the rows of this array contains the initial word. The number of this row and the last column of the array are the output of the machine.
+For example, if the initial word S1 = abracadabra, then the following array is formed:
+aabracadabr = S11
+abraabracad = S8
+abracadabra = S1
+acadabraabr = S4
+adabraabrac = S6
+braabracada = S9
+bracadabraa = S2
+cadabraabra = S5
+dabraabraca = S7
+raabracadab = S10
+racadabraab = S3
+In this case, the output of the machine is the number 3 and the line rdarcaaaabb.
+So it is clear how the cipher machine operates. However, no deciphering machine was found. But as the information can certainly be deciphered (otherwise there is no sense in sending it), you have to invent a deciphering algorithm.
+Input
+The first and the second lines contain an integer and a string respectively. This is the output of the cipher machine. Both the number and the length of the string do not exceed 100000. The string may contain only the letters a-z, A-Z and the underlining character. The lexicographic order on the set of words is determined by the following order of characters:
+ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz
+The characters here are given in the ascending order.
+Output
+The only line should contain the initial message.
+
