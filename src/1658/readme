@@ -1,0 +1,13 @@
+http://acm.timus.ru/problem.aspx?space=1&num=1658&locale=en
+
+1658. Sum of Digits
+Time limit: 2.0 second
+Memory limit: 64 MB
+Petka thought of a positive integer n and reported to Chapaev the sum of its digits and the sum of its squared digits. Chapaev scratched his head and said: “Well, Petka, I won't find just your number, but I can find the smallest fitting number.” Can you do the same?
+Input
+The first line contains the number of test cases t (no more than 10000). In each of the following t lines there are numbers s1 and s2 (1 ≤ s1, s2 ≤ 10000) separated by a space. They are the sum of digits and the sum of squared digits of the number n.
+Output
+For each test case, output in a separate line the smallest fitting number n, or “No solution” if there is no such number or if it contains more than 100 digits.
+Sample
+
+
